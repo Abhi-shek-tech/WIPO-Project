@@ -33,7 +33,7 @@ public class MakeMyTripHomePage extends BaseCapabilities {
     @FindBy(xpath="//input[@title='Where do you want to stay?']")
     WebElement locationField;
 
-    @FindBy(xpath = "//div[contains(@class, 'searchedResult')]")
+    @FindBy(xpath ="//div[@class='clickable']")  //div[contains(@class, 'searchedResult')]")
     WebElement firstOption;
 
     @FindBy(xpath="//input[@id='checkin']")
@@ -54,6 +54,8 @@ public class MakeMyTripHomePage extends BaseCapabilities {
     @FindBy(xpath="//span[@data-testid='children_count']")
     WebElement childrenCount;
 
+    @FindBy(xpath="//span[@data-testid='child_count']")
+    WebElement childrenAge;
     String dropdowns= "//ul[@class='gstSlct__list']//li[text()='%replace%']";
 
     @FindBy(xpath="//button[text()='Apply']")
@@ -140,6 +142,10 @@ public class MakeMyTripHomePage extends BaseCapabilities {
         driver.findElement(customUtilities.customXpath(dropdowns, prop.getProperty("NoOfChild"))).click();
     }
 
+    public void childAge() {
+        childrenAge.click();
+        driver.findElement(customUtilities.customXpath(dropdowns, prop.getProperty("childrenAge"))).click();
+    }
     public void clickApply() {
         apply.click();
 

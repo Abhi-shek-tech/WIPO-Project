@@ -4,9 +4,10 @@ import base.BaseCapabilities;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import utilities.customUtilities;
 
 public class MakeMyTripHotelBookingPage extends BaseCapabilities {
-    @FindBy(xpath="//h1[contains(text(),'Properties in Mumbai Region')]")
+    @FindBy(xpath="//h1[contains(text(),'Properties in')]")
     WebElement properties;
 
     @FindBy(xpath="//input[contains(@aria-label,'hotel name')]")
@@ -15,7 +16,7 @@ public class MakeMyTripHotelBookingPage extends BaseCapabilities {
     @FindBy(xpath="//li[@role='option']")
     WebElement listOptions;
 
-    @FindBy(xpath="//div[@class='persuasion ']//span")
+    @FindBy(xpath="(//div[@class='persuasion ']//span)[2]")
     WebElement clickLogin;
 
     @FindBy(xpath="//input[@id='username']")
@@ -38,17 +39,19 @@ public class MakeMyTripHotelBookingPage extends BaseCapabilities {
         properties.isDisplayed();
     }
 
-    public void searchHotel() {
+    public void searchHotelTextBox() {
         searchHotel.click();
-        searchHotel.sendKeys(prop.getProperty("From"));
+        searchHotel.sendKeys(prop.getProperty("HotelName"));
     }
 
-    public void clickFirst() {
+    public void clickFirst()
+    {
+        customUtilities.ExpWait(listOptions);
         listOptions.click();
     }
-    public void login() {
+    public void login()
+    {
         clickLogin.click();
-
     }
 }
 

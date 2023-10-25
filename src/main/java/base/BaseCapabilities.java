@@ -48,7 +48,7 @@ public class BaseCapabilities {
         public void readPropertyFile() {
             try {
 
-                FileInputStream propFile = new FileInputStream("C:\\Users\\hope\\IdeaProjects\\MMT\\src\\main\\java\\configuration\\test.properties");
+                FileInputStream propFile = new FileInputStream("src/main/java/configuration/test.properties");
                 prop = new Properties();
                 prop.load(propFile);
             } catch(IOException e) {

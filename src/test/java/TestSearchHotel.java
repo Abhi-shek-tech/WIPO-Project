@@ -6,6 +6,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import pages.MakeMyTripHomePage;
+import pages.MakeMyTripHotelBookingPage;
 import utilities.customUtilities;
 
 public class TestSearchHotel extends TestSetup {
@@ -57,11 +58,43 @@ public class TestSearchHotel extends TestSetup {
         home.numGuest();
         test.log(Status.INFO, "selected the number of required guests");
 
-        home.numChild();
-        test.log(Status.INFO, "selected the number of required child");
+//        home.numChild();
+//        test.log(Status.INFO, "selected the number of required child");
+//
+//        home.childAge();
+//        test.log(Status.INFO, "selected the number of required child");
 
         home.clickApply();
         test.log(Status.INFO, "clicked apply button");
+
+        home.clickSearch();
+        test.log(Status.INFO, "clicked search button");
+
+        MakeMyTripHotelBookingPage hotel = new MakeMyTripHotelBookingPage();
+
+        hotel.numberOfProperties();
+        test.log(Status.INFO, "The available properties are correctly displayed");
+
+        hotel.searchHotelTextBox();
+        test.log(Status.INFO,"The expected hotel is searched");
+
+        hotel.clickFirst();
+        test.log(Status.INFO,"clicked on the hotel");
+
+        hotel.login();
+        test.log(Status.INFO,"clicked on login to book the hotel");
+
+        home.enterEmail();
+        test.log(Status.INFO, "Entered the email");
+
+//        home.continueBtn();
+//        test.log(Status.INFO, "Clicked on continue button");
+//
+//        home.enterPass();
+//        test.log(Status.INFO, "Entered password");
+//
+//        home.clickLogin();
+//        test.log(Status.INFO, "Clicked on login button");
     }
 
 
