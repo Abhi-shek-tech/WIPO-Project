@@ -13,6 +13,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 public class BaseCapabilities {
         public static Properties prop;
@@ -21,7 +22,6 @@ public class BaseCapabilities {
         public static ExtentHtmlReporter htmlReporter;
         public static ExtentReports extent;
         public static ExtentTest test;
-        public static ExtentTest childTest;
 
 
         // Initialize the driver
@@ -39,6 +39,10 @@ public class BaseCapabilities {
 
             driver.manage().timeouts().pageLoadTimeout(pageLoadTimeout);
             driver.manage().timeouts().implicitlyWait(implicitlyWaitTimeout);
+////
+//            long pageLoadTimeoutInSeconds = pageLoadTimeout.toMillis() / 1000;
+//            driver.manage().timeouts().pageLoadTimeout(pageLoadTimeoutInSeconds, TimeUnit.SECONDS);
+
 
             driver.manage().window().maximize();
             driver.manage().deleteAllCookies();
@@ -60,8 +64,8 @@ public class BaseCapabilities {
         //Setup extend report v4
         public void setExtentReport() {
 
-            htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/extentReports/MMTFunctionalTestReport.html");
-            htmlReporter.config().setDocumentTitle("Makemytrip Automation Report"); // Title
+            htmlReporter = new ExtentHtmlReporter(System.getProperty("user.dir") + "/extentReports/WIPOFunctionalTestReport.html");
+            htmlReporter.config().setDocumentTitle("WIPO Automation Report"); // Title
             htmlReporter.config().setReportName("Functional Testing"); // Report Name
             htmlReporter.config().setTheme(Theme.DARK);
 

@@ -28,14 +28,6 @@ import java.util.Date;
 
 public class customUtilities extends BaseCapabilities {
 
-        /*
-         * 1. ExpWait()
-         * 2. getExcelData()
-         * 3. getCurrentAndReturnDates()
-         * 4. customXpath()
-         * 5. getScreenshot()
-         */
-
 
         /**************************************
          * Description: Explicit wait for a web element
@@ -44,6 +36,10 @@ public class customUtilities extends BaseCapabilities {
             WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(40));
             wait.until(ExpectedConditions.elementToBeClickable(element));
         }
+//        public static void ExpWait(WebElement element) {
+//            WebDriverWait wait = new WebDriverWait(driver, 40);
+//            wait.until(ExpectedConditions.elementToBeClickable(element));
+//        }
 
         /**************************************
          * Description: Data provider for the test cases
@@ -103,47 +99,36 @@ public class customUtilities extends BaseCapabilities {
         return data;
     }
 
-    public Object[][] dpMethod (Method m) throws IOException{
-        System.out.println("DP executed for test case : "+m.getName());
-        int total_rows=getRowCount(m.getName());
-        int total_columns=getColumnCount(m.getName(), 1);
-
-        String[][] testcaseData = new String[total_rows][total_columns-1];
-
-        for(int i=1 ; i<=total_rows; i++){
-            for(int j=1; j<total_columns; j++){
-                testcaseData[i-1][j-1]= getCellData(m.getName(), i, j);
-            }
-        }
-        System.out.println(Arrays.deepToString(testcaseData));
-        return testcaseData;
-    }
+//    public Object[][] dpMethod (Method m) throws IOException{
+//        System.out.println("DP executed for test case : "+m.getName());
+//        int total_rows=getRowCount(m.getName());
+//        int total_columns=getColumnCount(m.getName(), 1);
+//
+//        String[][] testcaseData = new String[total_rows][total_columns-1];
+//
+//        for(int i=1 ; i<=total_rows; i++){
+//            for(int j=1; j<total_columns; j++){
+//                testcaseData[i-1][j-1]= getCellData(m.getName(), i, j);
+//            }
+//        }
+//        System.out.println(Arrays.deepToString(testcaseData));
+//        return testcaseData;
+//    }
 
     /**************************************
      * Description: Dynamic Xpath
      **************************************/
-    public static By customXpath(String xpath, String param) {
-        String rawPath = xpath.replaceAll("%replace%", param);
-        return By.xpath(rawPath);
-    }
+//    public static By customXpath(String xpath, String param) {
+//        String rawPath = xpath.replaceAll("%replace%", param);
+//        return By.xpath(rawPath);
+//    }
 
-    public static String departureDate;
-    public static String returnDate;
 
-    public static customUtilities getCurrentAndReturnDates() {
-        customUtilities date = new customUtilities();
-        Calendar cal=Calendar.getInstance();
 
-        cal.add(Calendar.DATE, 1); // please delete this line. added for test the tomorrow date.
 
-        String[] dateArr=cal.getTime().toString().split(" ");
-        customUtilities.departureDate=dateArr[0]+" "+dateArr[1]+" "+dateArr[2]+" "+dateArr[5];
-        cal.add(Calendar.DATE, Integer.parseInt(prop.getProperty("NoOfdays")));
-        dateArr=cal.getTime().toString().split(" ");
-        customUtilities.returnDate=dateArr[0]+" "+dateArr[1]+" "+dateArr[2]+" "+dateArr[5];
-        return date;
-    }
-
+    /**************************************
+     * Description: To take screenshots
+     **************************************/
     public static String getScreenshot(String imageName) {
 
         String currentDate = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
