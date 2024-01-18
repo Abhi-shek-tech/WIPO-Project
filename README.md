@@ -1,2 +1,2 @@
 # WIPO-Project
-Assignment for Adapt Ready
+Assignment automation
