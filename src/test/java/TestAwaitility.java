@@ -30,17 +30,18 @@ public class TestAwaitility extends TestSetup{
             wipo.searchTitle();
             test.log(Status.INFO,"The searched title is displayed" );
 
+            wipo.returnJurisdiction();
+            test.log(Status.INFO,"The Jurisdiction name is available");
+
             wipo.returnPublicationNumber();
             test.log(Status.INFO,"The publication date available");
 
             wipo.returnPublicationDate();
             test.log(Status.INFO,"The publication number available " );
 
+            wipo.returnFilingDate();
+            test.log(Status.INFO,"The filing date is available " );
 
-//            System.setProperty("webdriver.chrome.driver", "path/to/chromedriver");
-//            WebDriver driver = new ChromeDriver();
-//            driver.get("https://www.wipo.int/patinformed/");
-//            driver.quit();
         }
 
     @AfterMethod

@@ -33,9 +33,17 @@ public class WIPOPage extends BaseCapabilities {
     @FindBy(xpath="(//td[contains(text(),'WIPO')]/parent::tr/following-sibling::tr/td)[2]")
     WebElement wipoPublicationNumber;
 
-    @FindBy(xpath="(//td[contains(text(),'WIPO')]/parent::tr/following-sibling::tr)[2]")
+    @FindBy(xpath="//td[contains(text(),'WIPO')]")
+    WebElement jurisdiction;
+
+//    @FindBy(xpath="(//td[contains(text(),'WIPO')]/parent::tr/following-sibling::tr)[2]")
+//    WebElement wipoPublicationDate;
+
+    @FindBy(xpath="(//td[contains(text(),'WIPO')]/parent::tr/following-sibling::tr/td)[4]")
     WebElement wipoPublicationDate;
 
+    @FindBy(xpath="(//td[contains(text(),'WIPO')]/parent::tr/following-sibling::tr/td)[6]")
+    WebElement filingDate;
 
     // constructor
 
@@ -57,22 +65,6 @@ public class WIPOPage extends BaseCapabilities {
         searchField.sendKeys(prop.getProperty("Company"));
     }
 
-    public void searchIcon() {
-        Awaitility.await().atMost(Duration.ofSeconds(20))
-                .until(() -> {
-                    searchButton.click();
-                    // Add your condition here, e.g., return true if the expected state is reached
-                    return isSearchCompleted();
-                });
-    }
-
-    private boolean isSearchCompleted() {
-        return searchButton.isDisplayed();
-    }
-
-    public void disclaimerPopUp() {
-        disclaimer.isDisplayed();
-    }
     public void clickAcceptButton() {
         wait.until(ExpectedConditions.elementToBeClickable(acceptButton));
         acceptButton.click();
@@ -82,17 +74,41 @@ public class WIPOPage extends BaseCapabilities {
         searchedTitle.click();
     }
 
+    public void returnJurisdiction() {
+        Awaitility.await()
+                .atMost(Duration.ofSeconds(20))
+                .pollInterval(Duration.ofSeconds(1)) // Set your desired poll interval here
+                .until(() -> {
+                    String jurisdictionName = jurisdiction.getText();
+                    test.log(Status.INFO,"The jurisdiction is :- "+ jurisdictionName);
+                    System.out.println(jurisdictionName);
+                    return isPublicationNumberAvailable();
+                });
+    }
+
     public void returnPublicationNumber() {
         Awaitility.await()
                 .atMost(Duration.ofSeconds(20))
                 .pollInterval(Duration.ofSeconds(1)) // Set your desired poll interval here
                 .until(() -> {
         String publicationNumber = wipoPublicationNumber.getText();
-        test.log(Status.INFO,"The publication date available :- "+ publicationNumber);
+        test.log(Status.INFO,"The publication date is :- "+ publicationNumber);
         System.out.println(publicationNumber);
         return isPublicationNumberAvailable();
 });
         }
+
+    public void returnFilingDate() {
+        Awaitility.await()
+                .atMost(Duration.ofSeconds(20))
+                .pollInterval(Duration.ofSeconds(1)) // Set your desired poll interval here
+                .until(() -> {
+                    String filing_Date = filingDate.getText();
+                    test.log(Status.INFO,"The filing date is :- "+ filing_Date);
+                    System.out.println(filing_Date);
+                    return isPublicationNumberAvailable();
+                });
+    }
 
 private boolean isPublicationNumberAvailable() {
 
